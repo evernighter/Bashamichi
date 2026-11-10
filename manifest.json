@@ -1,1 +1,20 @@
- # PWA 設定檔
+{
+  "name": "橫濱旅行行程表",
+  "short_name": "橫濱行",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#FFE4E1",
+  "theme_color": "#D2691E",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
