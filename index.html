@@ -17,41 +17,43 @@
             --fuu-green: #4DFF94;
             --magic-pink: #FFC0CB;
             --gold: #FFD700;
-            --retro-dot: rgba(255, 182, 193, 0.4);
         }
 
         body {
             margin: 0;
             background-color: var(--magic-pink);
-            background-image: radial-gradient(var(--retro-dot) 15%, transparent 15%);
-            background-size: 18px 18px;
+            /* 華麗魔法圖騰背景 - 使用 SVG 數據圖案 */
+            background-image: 
+                url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100 0 L110 90 L200 100 L110 110 L100 200 L90 110 L0 100 L90 90 Z' fill='none' stroke='white' stroke-width='0.5' opacity='0.3'/%3E%3Ccircle cx='100' cy='100' r='40' fill='none' stroke='white' stroke-width='0.5' opacity='0.3'/%3E%3Ccircle cx='100' cy='100' r='60' fill='none' stroke='white' stroke-width='0.2' opacity='0.2'/%3E%3Crect x='70' y='70' width='60' height='60' fill='none' stroke='white' stroke-width='0.3' opacity='0.3' transform='rotate(45 100 100)'/%3E%3C/svg%3E"),
+                radial-gradient(var(--magic-pink) 20%, #FFB6C1 100%);
+            background-attachment: fixed;
             font-family: "Helvetica Neue", "Microsoft JhengHei", sans-serif;
             color: #4A2C2C;
             padding-bottom: 110px;
             overflow-x: hidden;
         }
 
-        /* 魔法陣旋轉背景 */
-        .magic-bg-circle {
-            position: absolute;
-            top: -50px;
+        /* 旋轉的華麗魔法陣 (置中背景裝飾) */
+        .magic-totem-overlay {
+            position: fixed;
+            top: 20%;
             left: 50%;
             transform: translateX(-50%);
-            width: 400px;
-            height: 400px;
-            border: 2px dashed rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            animation: rotateCircle 20s linear infinite;
+            width: 500px;
+            height: 500px;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='48' fill='none' stroke='white' stroke-width='0.5' stroke-dasharray='2,2' opacity='0.4'/%3E%3Cpath d='M50 2 L55 45 L98 50 L55 55 L50 98 L45 55 L2 50 L45 45 Z' fill='none' stroke='white' stroke-width='0.3' opacity='0.3'/%3E%3Ccircle cx='50' cy='50' r='30' fill='none' stroke='white' stroke-width='1' opacity='0.2'/%3E%3C/svg%3E");
+            background-size: contain;
+            animation: rotateTotem 60s linear infinite;
+            z-index: -1;
             pointer-events: none;
-            z-index: 0;
         }
 
-        @keyframes rotateCircle {
+        @keyframes rotateTotem {
             from { transform: translateX(-50%) rotate(0deg); }
             to { transform: translateX(-50%) rotate(360deg); }
         }
 
-        /* 英雄區 (1136x1588 比例) */
+        /* 英雄區 (1136x1588 比例優化) */
         .hero-section {
             position: relative;
             width: 100%;
@@ -73,28 +75,15 @@
 
         @keyframes magicFloat {
             0%, 100% { transform: translateY(0) scale(1); filter: brightness(1); }
-            50% { transform: translateY(-20px) scale(1.02); filter: brightness(1.2); }
+            50% { transform: translateY(-20px) scale(1.02); filter: brightness(1.15); }
         }
 
-        /* 閃爍粒子 */
-        .sparkle {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 2s infinite;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0; transform: scale(0.5); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
-
-        /* 分頁標題：變身器風格 */
+        /* 分頁標題：神殿風格 */
         .page-header {
             text-align: center;
             margin: -30px 20px 20px;
             padding: 15px;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.92);
             border: 4px double var(--gold);
             border-radius: 50px;
             box-shadow: 0 0 15px var(--gold);
@@ -110,7 +99,7 @@
             text-shadow: 1px 1px 0px white;
         }
 
-        /* 行程卡片：昭和復古＋霓虹發光 */
+        /* 行程卡片 */
         .card {
             background: rgba(255, 255, 255, 0.95);
             margin: 15px 20px;
@@ -119,15 +108,6 @@
             border: 2px solid white;
             box-shadow: 0 0 10px rgba(255, 192, 203, 0.5), 5px 5px 0px var(--hikaru-red);
             position: relative;
-            overflow: hidden;
-        }
-
-        .card::after {
-            content: '✨';
-            position: absolute;
-            top: 5px;
-            right: 10px;
-            opacity: 0.5;
         }
 
         .card h3 {
@@ -135,16 +115,6 @@
             font-size: 1.1rem;
             border-bottom: 2px dotted var(--magic-pink);
             padding-bottom: 5px;
-        }
-
-        .card p, .card li { font-size: 0.9rem; line-height: 1.6; }
-
-        .store-list { 
-            background: #FFF5F7; 
-            padding: 10px 15px; 
-            border-radius: 15px; 
-            list-style: none;
-            margin: 10px 0;
         }
 
         .transport-ribbon {
@@ -158,7 +128,17 @@
             box-shadow: 3px 3px 0px rgba(0,0,0,0.1);
         }
 
-        /* 傳送門按鈕 */
+        .store-list { 
+            background: #FFF5F7; 
+            padding: 10px 15px; 
+            border-radius: 15px; 
+            list-style: none;
+            margin: 10px 0;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        /* 按鈕與導航 */
         .btn-magic {
             background: white;
             border: 2px solid var(--hikaru-red);
@@ -170,16 +150,8 @@
             font-weight: bold;
             display: inline-block;
             margin-top: 10px;
-            transition: 0.3s;
         }
 
-        .btn-magic:active {
-            transform: scale(0.9) rotate(-3deg);
-            background: var(--hikaru-red);
-            color: white;
-        }
-
-        /* 導航：雷阿斯元素 */
         .nav-bar {
             position: fixed;
             bottom: 25px;
@@ -193,58 +165,43 @@
             justify-content: space-around;
             align-items: center;
             border: 3px solid var(--gold);
-            box-shadow: 0 10px 30px rgba(255, 77, 77, 0.3);
             z-index: 100;
         }
 
         .nav-item { text-align: center; opacity: 0.4; transition: 0.4s; }
         .nav-item.active { opacity: 1; transform: translateY(-10px) scale(1.1); }
-        .nav-item.active .nav-icon { filter: drop-shadow(0 0 8px var(--gold)); }
-
         .nav-icon { font-size: 1.8rem; display: block; }
-        .nav-label { font-size: 0.65rem; font-weight: bold; margin-top: 2px; }
+        .nav-label { font-size: 0.65rem; font-weight: bold; }
 
-        /* 不同分頁的色系切換 */
-        .theme-umi .page-header { border-color: var(--umi-blue); box-shadow: 0 0 15px var(--umi-blue); }
+        /* 主題色彩切換 */
         .theme-umi .page-header h2 { color: var(--umi-blue); }
         .theme-umi .card { box-shadow: 0 0 10px var(--umi-blue), 5px 5px 0px var(--umi-blue); }
         .theme-umi .btn-magic { border-color: var(--umi-blue); color: var(--umi-blue); }
 
-        .theme-fuu .page-header { border-color: var(--fuu-green); box-shadow: 0 0 15px var(--fuu-green); }
         .theme-fuu .page-header h2 { color: var(--fuu-green); }
         .theme-fuu .card { box-shadow: 0 0 10px var(--fuu-green), 5px 5px 0px var(--fuu-green); }
         .theme-fuu .btn-magic { border-color: var(--fuu-green); color: var(--fuu-green); }
 
         .page { display: none; }
-        .page.active { display: block; animation: magicAppear 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        @keyframes magicAppear {
-            from { opacity: 0; transform: translateY(50px) scale(0.9); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
+        .page.active { display: block; animation: magicAppear 0.5s ease-out; }
+        @keyframes magicAppear { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body class="theme-hikaru">
 
-<!-- 魔法特效層 -->
-<div class="magic-bg-circle"></div>
+<!-- 背景華麗圖騰 -->
+<div class="magic-totem-overlay"></div>
 
 <!-- Day 1: 炎之神殿 -->
 <div id="day1" class="page active">
-    <div class="hero-section">
-        <img src="assets/images/day1.webp" class="hero-img">
-    </div>
-    <div class="page-header">
-        <h2>🔥 炎之神殿．光之章</h2>
-    </div>
-    
-    <div class="transport-ribbon">傳送指令：抵達羽田，由補給站開啟橫濱冒險。</div>
-
+    <div class="hero-section"><img src="assets/images/day1.webp" class="hero-img"></div>
+    <div class="page-header"><h2>🔥 炎之神殿．光之章</h2></div>
+    <div class="transport-ribbon">傳送指令：抵達羽田，開啟補給儀式。</div>
     <div class="card">
         <h3>羽田機場第3航廈</h3>
-        <p>4F 江戶小路 (補給體力) / 3F 出發大廳 ANA 禮品店</p>
+        <p>4F 江戶小路 / 3F 出發大廳 ANA 禮品店</p>
         <a href="https://maps.app.goo.gl/3VvB9" class="btn-magic">開啟傳送門</a>
     </div>
-
     <div class="card">
         <h3>馬車道補給站</h3>
         <ul class="store-list">
@@ -257,27 +214,20 @@
             <a href="https://maps.app.goo.gl/bsYCuWHKw5jCg8b37" class="btn-magic">松本清</a>
         </div>
     </div>
-
     <div class="card">
-        <h3>橫濱點燈儀式</h3>
+        <h3>橫濱點燈 ✨</h3>
         <p>橫濱站東口延伸至 Grand Mall 公園</p>
-        <a href="https://maps.app.goo.gl/91XwY5ZxbbpaAgQB9" class="btn-magic">啟動點燈地圖</a>
+        <a href="https://maps.app.goo.gl/91XwY5ZxbbpaAgQB9" class="btn-magic">地圖導航</a>
     </div>
 </div>
 
 <!-- Day 2: 水之神殿 -->
 <div id="day2" class="page">
-    <div class="hero-section">
-        <img src="assets/images/day2.webp" class="hero-img">
-    </div>
-    <div class="page-header">
-        <h2>💧 水之神殿．海之章</h2>
-    </div>
-    
+    <div class="hero-section"><img src="assets/images/day2.webp" class="hero-img"></div>
+    <div class="page-header"><h2>💧 水之神殿．海之章</h2></div>
     <div class="transport-ribbon">傳送指令：搭乘港未來線，5分鐘直達橫濱站。</div>
-
     <div class="card">
-        <h3>@cosme 魔法陣</h3>
+        <h3>@cosme 旗艦巡禮</h3>
         <ul class="store-list">
             <li><b>LUMINE店：</b>東口共構 B2 (1樓有 HARBS)</li>
             <li><b>NEWoMan店：</b>西口最大旗艦店 (5-6樓)</li>
@@ -287,70 +237,60 @@
             <a href="https://maps.app.goo.gl/QA8Bgg7eEV3ScwvRA" class="btn-magic">NEWoMan</a>
         </div>
     </div>
-
     <div class="card">
-        <h3>橫濱站各大商圈</h3>
-        <p>高島屋、SOGO、JOINUS、PORTA、BAY QUARTER</p>
+        <h3>各大百貨商圈</h3>
+        <p>JOINUS、PORTA、SOGO、高島屋、BAY QUARTER</p>
         <div class="link-group">
-            <a href="https://maps.app.goo.gl/Pf92tbVYqeuxCvRh6" class="btn-magic">高島屋</a>
-            <a href="https://maps.app.goo.gl/CCP6z6iwV5tier1V6" class="btn-magic">SOGO</a>
             <a href="https://maps.app.goo.gl/Teavo76NsjEE3WZc9" class="btn-magic">JOINUS</a>
+            <a href="https://maps.app.goo.gl/VrLSj4ZD3A5qyUsa6" class="btn-magic">BAY QUARTER</a>
         </div>
     </div>
 </div>
 
 <!-- Day 3: 風之神殿 -->
 <div id="day3" class="page">
-    <div class="hero-section">
-        <img src="assets/images/day3.webp" class="hero-img">
-    </div>
-    <div class="page-header">
-        <h2>🍃 風之神殿．風之章</h2>
-    </div>
-
+    <div class="hero-section"><img src="assets/images/day3.webp" class="hero-img"></div>
+    <div class="page-header"><h2>🍃 風之神殿．風之章</h2></div>
     <div class="card">
-        <h3>Colette・Mare (北仲橋旁)</h3>
-        <p>🚶 步行 7 分鐘：UNIQLO、GU、MUJI、Seria、STORY STORY</p>
-        <a href="https://maps.app.goo.gl/NDroEvRJkzVdpLoi6" class="btn-magic">開啟地圖</a>
+        <h3>Colette・Mare</h3>
+        <p>🚶 步行 7 分：UNIQLO、GU、MUJI、Seria、STORY STORY</p>
+        <a href="https://maps.app.goo.gl/NDroEvRJkzVdpLoi6" class="btn-magic">地圖</a>
     </div>
-
     <div class="card">
         <h3>MARK IS 港未來</h3>
-        <p>🚃 電車 1 站：藍瓶咖啡、Bakery Square、3COINS、Daiso</p>
-        <a href="https://maps.app.goo.gl/ZLyG4mq57Ru4Kn8A7" class="btn-magic">開啟地圖</a>
+        <p>🚃 1 站直達：藍瓶咖啡、Bakery Square、3COINS、Daiso</p>
+        <a href="https://maps.app.goo.gl/ZLyG4mq57Ru4Kn8A7" class="btn-magic">地圖</a>
     </div>
-
     <div class="card">
         <h3>橫濱 World Porters</h3>
-        <p>🚶 步行 5 分鐘：昭和復古選物、動漫週邊、甘味處 鎌倉</p>
-        <a href="https://maps.app.goo.gl/zcH6ocYGkEyfERnc9" class="btn-magic">開啟地圖</a>
+        <p>🚶 步行 5 分：昭和復古、動漫週邊、甘味處 鎌倉</p>
+        <a href="https://maps.app.goo.gl/zcH6ocYGkEyfERnc9" class="btn-magic">地圖</a>
+    </div>
+    <div class="card">
+        <h3>Queen’s Square</h3>
+        <p>Disney Store、Snoopy Town、Sanrio Shop</p>
+        <a href="https://maps.app.goo.gl/xYNEgrvMW1Usy19j9" class="btn-magic">地圖</a>
     </div>
 </div>
 
 <!-- Favorites -->
 <div id="fav" class="page">
-    <div class="hero-section">
-        <img src="assets/images/spots.webp" class="hero-img">
-    </div>
-    <div class="page-header">
-        <h2>💎 錫非羅記事．精靈收藏</h2>
-    </div>
-    
+    <div class="hero-section"><img src="assets/images/spots.webp" class="hero-img"></div>
+    <div class="page-header"><h2>💎 錫非羅記事．傳送收藏</h2></div>
     <div class="card">
-        <h3>官方傳送地圖</h3>
+        <h3>官方路網指南</h3>
         <div class="link-group">
-            <a href="https://www.tokyu.co.jp/global/assets/rosen-chinese_tc.pdf" class="btn-magic">📘 東急路網圖</a>
+            <a href="https://www.tokyu.co.jp/global/assets/rosen-chinese_tc.pdf" class="btn-magic">📘 東急 PDF</a>
             <a href="https://www.mm21railway.co.jp/global/img/about/flg_route_map_zh-TW.png" class="btn-magic">🗺️ 港未來線</a>
+            <a href="https://www.mm21railway.co.jp/global/img/about/flg_transfer_map_zh-TW.png" class="btn-magic">🔄 轉乘圖</a>
         </div>
     </div>
-
     <div id="custom-list"></div>
-
-    <div class="card" style="border-style: dashed; background: #FFF9FC;">
-        <h3>+ 新增魔法傳送點</h3>
+    <div class="card" style="border-style: dashed; background: rgba(255, 255, 255, 0.5);">
+        <h3>+ 注入新景點魔法</h3>
         <input type="text" id="spot-name" placeholder="景點名稱..." style="width:100%; padding:12px; margin:10px 0; border-radius:15px; border:2px solid var(--magic-pink);">
         <input type="text" id="spot-url" placeholder="Google Maps 連結..." style="width:100%; padding:12px; margin:10px 0; border-radius:15px; border:2px solid var(--magic-pink);">
-        <button onclick="saveSpot()" style="width:100%; padding:15px; background:var(--hikaru-red); color:white; border:none; border-radius:15px; font-weight:bold; box-shadow: 0 4px 0 #A00;">注入魔法儲存</button>
+        <button onclick="saveSpot()" style="width:100%; padding:15px; background:var(--hikaru-red); color:white; border:none; border-radius:15px; font-weight:bold;">注入魔法儲存</button>
     </div>
 </div>
 
@@ -374,12 +314,9 @@
     function showPage(pageId, theme, el) {
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         document.getElementById(pageId).classList.add('active');
-        
-        document.body.className = theme; // 切換主題顏色
-        
+        document.body.className = theme;
         document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
         el.classList.add('active');
-        
         window.scrollTo({top: 0, behavior: 'smooth'});
     }
 
@@ -387,9 +324,9 @@
         const name = document.getElementById('spot-name').value;
         const url = document.getElementById('spot-url').value;
         if (!name) return;
-        const spots = JSON.parse(localStorage.getItem('rayearthSpots') || '[]');
+        const spots = JSON.parse(localStorage.getItem('yokoMagic_v3') || '[]');
         spots.push({ name, url });
-        localStorage.setItem('rayearthSpots', JSON.stringify(spots));
+        localStorage.setItem('yokoMagic_v3', JSON.stringify(spots));
         renderSpots();
         document.getElementById('spot-name').value = '';
         document.getElementById('spot-url').value = '';
@@ -397,7 +334,7 @@
 
     function renderSpots() {
         const list = document.getElementById('custom-list');
-        const spots = JSON.parse(localStorage.getItem('rayearthSpots') || '[]');
+        const spots = JSON.parse(localStorage.getItem('yokoMagic_v3') || '[]');
         list.innerHTML = spots.map(s => `
             <div class="card">
                 <h3>${s.name}</h3>
@@ -406,17 +343,6 @@
         `).join('');
     }
     renderSpots();
-
-    // 增加隨機閃爍星塵
-    for (let i = 0; i < 15; i++) {
-        let s = document.createElement('div');
-        s.className = 'sparkle';
-        s.style.top = Math.random() * 100 + '%';
-        s.style.left = Math.random() * 100 + '%';
-        s.style.width = s.style.height = Math.random() * 5 + 2 + 'px';
-        s.style.animationDelay = Math.random() * 2 + 's';
-        document.body.appendChild(s);
-    }
 </script>
 
 </body>
