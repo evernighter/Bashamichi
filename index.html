@@ -96,29 +96,30 @@
             position: relative;
         }
 
-        .card h3 { margin: 0 0 10px 0; font-size: 1.1rem; border-bottom: 2px dotted var(--magic-pink); padding-bottom: 5px; color: var(--text-brown); }
+        .card h3 { margin: 0 0 10px 0; font-size: 1.1rem; border-bottom: 2px dotted var(--magic-pink); padding-bottom: 5px; }
 
         .info-text { font-size: 0.9rem; line-height: 1.6; margin: 5px 0; }
         
         .point-list { 
             background: #FFF5F7; padding: 12px; border-radius: 15px; 
-            list-style: none; margin: 10px 0; font-size: 0.85rem; color: #5D4037;
+            list-style: none; margin: 10px 0; font-size: 0.85rem; 
         }
 
-        .point-list li { margin-bottom: 8px; position: relative; padding-left: 20px; line-height: 1.5; }
+        .point-list li { margin-bottom: 8px; position: relative; padding-left: 20px; }
         .point-list li::before { content: '✨'; position: absolute; left: 0; font-size: 0.7rem; }
-        .point-list b { color: #000; }
 
         .transport-ribbon {
             background: linear-gradient(90deg, var(--hikaru-red), var(--magic-pink));
             color: white; padding: 10px 15px; font-size: 0.8rem; font-weight: bold;
-            margin: 0 20px; border-radius: 12px; line-height: 1.4;
+            margin: 0 20px; border-radius: 12px;
         }
+
+        .link-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
 
         .btn-magic {
             background: white; border: 2px solid var(--hikaru-red); color: var(--hikaru-red);
             padding: 8px 16px; border-radius: 20px; text-decoration: none;
-            font-size: 0.8rem; font-weight: bold; display: inline-block; margin-top: 10px;
+            font-size: 0.8rem; font-weight: bold; display: inline-block; cursor: pointer;
         }
 
         /* 導航 */
@@ -224,18 +225,16 @@
         <ul class="point-list">
             <li><b>1F：</b>日本最大級化妝品專區，專櫃品牌齊全。</li>
             <li><b>B2F 神奈川在地名物甜點街：</b>燒杯布丁 MARLOWE、千層酥名店 FRANCAIS、話題甜點 Butter no itoko 與 Shu Shu 鐵盒餅乾。</li>
-            <li><b>7F–8F 大型生活旗艦：</b>7 樓橫濱 Loft、紀伊國屋書店；8 樓大型無印良品。</li>
-            <li><b>6F：</b>SOGO 美術館。</li>
-            <li><b>10F：</b>海景餐廳街。</li>
+            <li><b>7F–8F 大型生活旗艦：</b>7 樓 Loft、紀伊國屋書店；8 樓無印良品。</li>
+            <li><b>6F / 10F：</b>SOGO 美術館 / 海景餐廳街。</li>
         </ul>
         <a href="https://maps.app.goo.gl/CCP6z6iwV5tier1V6" class="btn-magic">開啟導航</a>
     </div>
 
     <div class="card">
         <h3>其他重點商圈</h3>
-        <p class="info-text"><b>JOINUS：</b>橫濱站西口直通，規模龐大。</p>
-        <p class="info-text"><b>PORTA：</b>連結各線橫濱站東口和 YCAT、港未來地區的地下街。</p>
-        <p class="info-text"><b>BAY QUARTER：</b>直通橫濱站，有海上巴士乘船處，橫濱特色購物中心，咖啡廳與餐廳聚集。</p>
+        <p class="info-text"><b>JOINUS / PORTA：</b>西口直通商場 / 東口地下街樞紐。</p>
+        <p class="info-text"><b>BAY QUARTER：</b>直通車站，有海上巴士乘船處，特色購物中心。</p>
         <div class="link-group">
             <a href="https://maps.app.goo.gl/Teavo76NsjEE3WZc9" class="btn-magic">JOINUS</a>
             <a href="https://maps.app.goo.gl/GPPc9YSCKB9LV6x28" class="btn-magic">PORTA</a>
@@ -251,9 +250,9 @@
 
     <div class="card">
         <h3>Colette・Mare (科萊特馬雷)</h3>
-        <p class="info-text">🚶 從飯店走過北仲橋步行約 7 分鐘抵達。</p>
+        <p class="info-text">🚶 飯店走過北仲橋步行約 7 分鐘抵達。</p>
         <ul class="point-list">
-            <li><b>重點：</b>UNIQLO、GU、MUJI、百元商店 Seria、大型複合書店 STORY STORY YOKOHAMA</li>
+            <li>重點：UNIQLO、GU、MUJI、百元商店 Seria、大型複合書店 STORY STORY</li>
         </ul>
         <a href="https://maps.app.goo.gl/NDroEvRJkzVdpLoi6" class="btn-magic">開啟導航</a>
     </div>
@@ -262,31 +261,25 @@
         <h3>MARK IS 港未來</h3>
         <p class="info-text">🚃 電車 1 站直達 (港未來站MM03)。</p>
         <ul class="point-list">
-            <li><b>重點：</b>Hac Drug 藥妝店、神奈川最大 UNIQLO、藍瓶咖啡、Läderach 巧克力、B1 Bakery Square 烘焙品牌聚集地、玩具反斗城、3COINS、大創、Nojima (野島電器)</li>
+            <li>重點：Hac Drug、神奈川最大 UNIQLO、藍瓶咖啡、Läderach 巧克力、B1 Bakery Square、玩具反斗城、3COINS、大創、Nojima</li>
         </ul>
         <a href="https://maps.app.goo.gl/ZLyG4mq57Ru4Kn8A7" class="btn-magic">開啟導航</a>
     </div>
 
     <div class="card">
         <h3>橫濱 World Porters</h3>
-        <p class="info-text">🚶 馬車道站由 4 號出口步行約 5 分鐘。</p>
-        <ul class="point-list">
-            <li><b>重點：</b>KIRAKIRA DONKI、HAIKARA 橫丁 (昭和復古選物)、橫濱幻視藝術館、Blue Seal 沖繩冰淇淋、甘味處 鎌倉、動漫週邊</li>
-        </ul>
+        <p class="info-text">🚶 步行 5 分：KIRAKIRA DONKI、HAIKARA 橫丁 (昭和復古)、動漫週邊</p>
         <a href="https://maps.app.goo.gl/zcH6ocYGkEyfERnc9" class="btn-magic">開啟導航</a>
     </div>
 
     <div class="card">
         <h3>Queen’s Square (皇后廣場)</h3>
-        <p class="info-text">🚶 連接櫻木町站與港未來站。</p>
-        <ul class="point-list">
-            <li><b>重點：</b>Disney Store、Snoopy Town Shop、Sanrio Shop / Sanrio VIVITIX</li>
-        </ul>
+        <p class="info-text">🚶 連接櫻木町站與港未來站：Disney、Snoopy、Sanrio VIVITIX</p>
         <a href="https://maps.app.goo.gl/xYNEgrvMW1Usy19j9" class="btn-magic">開啟導航</a>
     </div>
 </div>
 
-<!-- Cefiro Notes -->
+<!-- Sephiro Notes -->
 <div id="fav" class="page">
     <div class="hero-section"><img src="assets/images/spots.webp" class="hero-img"></div>
     <div class="page-header"><h2>💎 瑟費洛記事．傳送收藏</h2></div>
@@ -294,7 +287,7 @@
     <div class="card">
         <h3>官方傳送地圖</h3>
         <div class="link-group">
-            <a href="https://www.tokyu.co.jp/global/assets/rosen-chinese_tc.pdf" class="btn-magic">📘 東急路網圖</a>
+            <a href="https://www.tokyu.co.jp/global/assets/rosen-chinese_tc.pdf" class="btn-magic">📘 東急 PDF</a>
             <a href="https://www.mm21railway.co.jp/global/img/about/flg_route_map_zh-TW.png?202303" class="btn-magic">🗺️ 港未來路線</a>
             <a href="https://www.mm21railway.co.jp/global/img/about/flg_transfer_map_zh-TW.png?202403" class="btn-magic">🔄 轉乘圖</a>
         </div>
@@ -339,21 +332,31 @@
         const name = document.getElementById('spot-name').value;
         const url = document.getElementById('spot-url').value;
         if (!name) return;
-        const spots = JSON.parse(localStorage.getItem('yokoMagic_final_v2') || '[]');
+        const spots = JSON.parse(localStorage.getItem('yokoMagic_final_v3') || '[]');
         spots.push({ name, url });
-        localStorage.setItem('yokoMagic_final_v2', JSON.stringify(spots));
+        localStorage.setItem('yokoMagic_final_v3', JSON.stringify(spots));
         renderSpots();
         document.getElementById('spot-name').value = '';
         document.getElementById('spot-url').value = '';
     }
 
+    function deleteSpot(index) {
+        const spots = JSON.parse(localStorage.getItem('yokoMagic_final_v3') || '[]');
+        spots.splice(index, 1);
+        localStorage.setItem('yokoMagic_final_v3', JSON.stringify(spots));
+        renderSpots();
+    }
+
     function renderSpots() {
         const list = document.getElementById('custom-list');
-        const spots = JSON.parse(localStorage.getItem('yokoMagic_final_v2') || '[]');
-        list.innerHTML = spots.map(s => `
+        const spots = JSON.parse(localStorage.getItem('yokoMagic_final_v3') || '[]');
+        list.innerHTML = spots.map((s, index) => `
             <div class="card">
                 <h3>${s.name}</h3>
-                <a href="${s.url}" class="btn-magic" target="_blank">打開傳送門</a>
+                <div class="link-group">
+                    <a href="${s.url}" class="btn-magic" target="_blank">打開傳送門</a>
+                    <button onclick="deleteSpot(${index})" class="btn-magic" style="border-color:#999; color:#999;">刪除魔法</button>
+                </div>
             </div>
         `).join('');
     }
