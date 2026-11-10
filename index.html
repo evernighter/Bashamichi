@@ -1,11 +1,256 @@
-<!-- iOS 啟動 PWA 模式 -->
-<meta name="apple-mobile-web-app-capable" content="yes">
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>東京橫濱行．昭和聖誕</title>
+    
+    <!-- iOS PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="橫濱旅行">
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
 
-<!-- 設定狀態列顏色 (default / black / black-translucent) -->
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <style>
+        :root {
+            --pink-bg: #FFE4E1;
+            --retro-red: #D2691E;
+            --christmas-green: #556B2F;
+            --cream: #FFF5EE;
+            --shadow: 4px 4px 0px #FADADD;
+        }
 
-<!-- iOS 圖示路徑 -->
-<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+        body {
+            margin: 0;
+            font-family: "Helvetica Neue", "Microsoft JhengHei", sans-serif;
+            background-color: var(--pink-bg);
+            color: #5D4037;
+            padding-bottom: 80px; /* 為底部選單留空間 */
+        }
 
-<!-- PWA Manifest 連結 -->
-<link rel="manifest" href="manifest.json">
+        /* 昭和復古可愛風裝飾 */
+        .header {
+            background: var(--cream);
+            padding: 40px 20px 20px;
+            text-align: center;
+            border-bottom: 5px dotted var(--retro-red);
+        }
+
+        h1 { font-size: 1.5rem; color: var(--retro-red); margin: 0; letter-spacing: 2px; }
+
+        .page { display: none; padding: 20px; animation: fadeIn 0.5s; }
+        .active { display: block; }
+
+        /* 卡片樣式 */
+        .card {
+            background: white;
+            border: 2px solid var(--retro-red);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card h3 { margin-top: 0; color: var(--christmas-green); border-bottom: 1px dashed #ccc; padding-bottom: 5px; }
+
+        .btn-map {
+            display: inline-block;
+            background: var(--retro-red);
+            color: white;
+            text-decoration: none;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 10px;
+        }
+
+        /* 底部導航欄 (iOS 樣式) */
+        .nav-bar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
+            border-top: 2px solid var(--retro-red);
+        }
+
+        .nav-item {
+            font-size: 0.7rem;
+            text-align: center;
+            color: #999;
+            cursor: pointer;
+        }
+
+        .nav-item.active { color: var(--retro-red); font-weight: bold; }
+        .nav-item i { font-size: 1.2rem; display: block; margin-bottom: 2px; }
+
+        /* 漂浮裝飾圖片 */
+        .float-img {
+            width: 120px;
+            float: right;
+            opacity: 0.9;
+            pointer-events: none;
+        }
+
+        /* 新增景點表單 */
+        .add-form {
+            background: var(--cream);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 1px solid var(--retro-red);
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button.add-btn {
+            background: var(--christmas-green);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>横濱の冬物語 ❄️</h1>
+    <div style="font-size: 0.8rem; color: var(--retro-red);">Christmas 2024</div>
+</div>
+
+<!-- Day 1 -->
+<div id="day1" class="page active">
+    <img src="assets/images/day1.webp" class="float-img" alt="deco">
+    <h2>Day 1: 抵達與生活補給</h2>
+    <div class="card">
+        <h3>✈️ 羽田機場</h3>
+        <p>江戶小路 (3F/4F)</p>
+        <a href="https://maps.app.goo.gl/3VvB9" class="btn-map">Google Maps</a>
+    </div>
+    <div class="card">
+        <h3>🛒 購物與藥妝 (馬車道)</h3>
+        <p>Lincos 超市、SUGI 藥局、松本清</p>
+        <a href="https://maps.app.goo.gl/xbxXY8YKHHJr3cVg7" class="btn-map">Lincos</a>
+        <a href="https://maps.app.goo.gl/tyjKqhbw263wBufA9" class="btn-map">SUGI</a>
+    </div>
+    <div class="card">
+        <h3>✨ 點燈: Grand Mall</h3>
+        <p>橫濱站東口延伸至公園</p>
+        <a href="https://maps.app.goo.gl/91XwY5ZxbbpaAgQB9" class="btn-map">地圖導航</a>
+    </div>
+</div>
+
+<!-- Day 2 -->
+<div id="day2" class="page">
+    <img src="assets/images/day2.webp" class="float-img" alt="deco">
+    <h2>Day 2: 橫濱站週邊商圈</h2>
+    <div class="card">
+        <h3>💄 @cosme (LUMINE/NEWoMan)</h3>
+        <p>橫濱最大規模美妝店</p>
+        <a href="https://maps.app.goo.gl/cNLbgVLWMasAxxuG6" class="btn-map">LUMINE店</a>
+    </div>
+    <div class="card">
+        <h3>🛍️ 百貨巡禮</h3>
+        <p>JOINUS、高島屋、SOGO、PORTA</p>
+        <a href="https://maps.app.goo.gl/Teavo76NsjEE3WZc9" class="btn-map">JOINUS</a>
+    </div>
+</div>
+
+<!-- Day 3 -->
+<div id="day3" class="page">
+    <img src="assets/images/day3.webp" class="float-img" alt="deco">
+    <h2>Day 3: 港未來漫步</h2>
+    <div class="card">
+        <h3>🏛️ World Porters</h3>
+        <p>昭和復古選物、KIRAKIRA DONKI</p>
+        <a href="https://maps.app.goo.gl/zcH6ocYGkEyfERnc9" class="btn-map">Google Maps</a>
+    </div>
+    <div class="card">
+        <h3>👗 MARK IS / Colette Mare</h3>
+        <p>UNIQLO、GU、藍瓶咖啡</p>
+        <a href="https://maps.app.goo.gl/ZLyG4mq57Ru4Kn8A7" class="btn-map">MARK IS</a>
+    </div>
+</div>
+
+<!-- Favorites -->
+<div id="fav" class="page">
+    <img src="assets/images/spots.webp" class="float-img" alt="deco">
+    <h2>我的私藏景點</h2>
+    <div id="custom-list"></div>
+    
+    <div class="add-form">
+        <h3>+ 新增自訂景點</h3>
+        <input type="text" id="spot-name" placeholder="景點名稱...">
+        <input type="text" id="spot-url" placeholder="Google Maps 連結...">
+        <button class="add-btn" onclick="saveSpot()">儲存景點</button>
+    </div>
+</div>
+
+<nav class="nav-bar">
+    <div class="nav-item active" onclick="showPage('day1', this)"><i>📅</i>D1</div>
+    <div class="nav-item" onclick="showPage('day2', this)"><i>🛍️</i>D2</div>
+    <div class="nav-item" onclick="showPage('day3', this)"><i>🎡</i>D3</div>
+    <div class="nav-item" onclick="showPage('fav', this)"><i>⭐</i>收藏</div>
+</nav>
+
+<script>
+    function showPage(pageId, el) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        el.classList.add('active');
+        window.scrollTo(0, 0);
+    }
+
+    function saveSpot() {
+        const name = document.getElementById('spot-name').value;
+        const url = document.getElementById('spot-url').value;
+        if (!name) return;
+
+        const spots = JSON.parse(localStorage.getItem('mySpots') || '[]');
+        spots.push({ name, url });
+        localStorage.setItem('mySpots', JSON.stringify(spots));
+        renderSpots();
+        document.getElementById('spot-name').value = '';
+        document.getElementById('spot-url').value = '';
+    }
+
+    function renderSpots() {
+        const list = document.getElementById('custom-list');
+        const spots = JSON.parse(localStorage.getItem('mySpots') || '[]');
+        list.innerHTML = spots.map(s => `
+            <div class="card">
+                <h3>${s.name}</h3>
+                <a href="${s.url}" class="btn-map" target="_blank">打開地圖</a>
+            </div>
+        `).join('');
+    }
+
+    // 初始化讀取
+    renderSpots();
+
+    // 註冊 Service Worker
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js');
+    }
+</script>
+
+</body>
+</html>
